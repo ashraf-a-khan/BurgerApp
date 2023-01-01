@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import me from "../../assets/founder.jpg";
+import me from "../../assets/founder2.png";
 import { Link } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 
