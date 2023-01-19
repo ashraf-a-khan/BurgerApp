@@ -16,10 +16,6 @@ import Users from "./components/admin/Users";
 import Orders from "./components/admin/Orders";
 import About from "./components/about/About";
 import NotFound from "./components/layout/NotFound";
-import { useDispatch, useSelector } from "react-redux";
-import { loadUser } from "./redux/actions/user";
-import toast, { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
 
 import "./styles/app.scss";
 import "./styles/header.scss";
@@ -40,33 +36,9 @@ import "./styles/dashboard.scss";
 import "./styles/about.scss";
 
 function App() {
-    const dispatch = useDispatch();
-    const { error, message, isAuthenticated } = useSelector(
-        (state) => state.auth
-    );
-
-    useEffect(() => {
-        dispatch(loadUser());
-    }, [dispatch]);
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-            dispatch({
-                type: "clearError",
-            });
-        }
-        if (message) {
-            toast.success(message);
-            dispatch({
-                type: "clearMessage",
-            });
-        }
-    }, [dispatch, error, message]);
-
     return (
         <Router>
-            <Header isAuthenticated={isAuthenticated} />
+            <Header isAuthenticated={true} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/contact" element={<Contact />} />
@@ -87,7 +59,6 @@ function App() {
             </Routes>
 
             <Footer />
-            <Toaster />
         </Router>
     );
 }
